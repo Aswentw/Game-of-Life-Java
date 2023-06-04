@@ -269,7 +269,7 @@ public class GameLife {
                     @Override
                     protected Object doInBackground() throws Exception {
 
-                        //Цикл симуляции
+                        //Цикл симуляции.
 
                         while(isRunning) {
 
@@ -294,9 +294,7 @@ public class GameLife {
 
                                 //Цикл пробегающий по ширине строки.
 
-                                for (int k = 0; k < map[0].length; k++) {
-
-                                    //Проверка цвета клетки: ЧЕРНАЯ - ПРОВЕРКА РОЖДЕНИЯ.
+                                for (int k = 0; k < map[0].length; k++) {                           
 
                                     if (map[i][k].getBackground() == Color.BLACK) {
 
@@ -331,9 +329,7 @@ public class GameLife {
 
                                         }
 
-                                    }
-
-                                    //Проверка смерти.
+                                    }                                    
 
                                     else if (map[i][k].getBackground() == Color.GREEN) {
 
