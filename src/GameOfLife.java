@@ -64,8 +64,7 @@ public class GameOfLife {
                     int finalI = i;
                     int finalJ = j;
 
-                    map[i][j].addMouseListener(new MouseListener() {
-
+                    map[i][j].addMouseListener(new MouseListener() {                       
                         @Override
                         public void mouseClicked(MouseEvent e) {
                         }
@@ -74,7 +73,7 @@ public class GameOfLife {
                         public void mousePressed(MouseEvent e) {
                             if (!isRunning) {
                                 if (map[finalI][finalJ].getBackground() == Color.BLACK) {
-                                    map[finalI][finalJ].setBackground(userColor);
+                                    map[finalI][finalJ].setBackground(userColor);                                   
                                 } else {
                                     map[finalI][finalJ].setBackground(Color.BLACK);
                                 }
@@ -87,11 +86,13 @@ public class GameOfLife {
 
                         @Override
                         public void mouseEntered(MouseEvent e) {
+
                         }
 
                         @Override
                         public void mouseExited(MouseEvent e) {
                         }
+
                     });
 
 
@@ -111,7 +112,11 @@ public class GameOfLife {
 
                 for (int j = 0; j < map[0].length; j++) {
 
-                    jPanels[j].setBorder(BorderFactory.createLineBorder(new Color(20, 20, 20), 1));
+                    if(j != 0) {
+
+                        jPanels[j].setBorder(BorderFactory.createLineBorder(new Color(20, 20, 20), 1));
+
+                    }
 
                 }
 
@@ -123,7 +128,11 @@ public class GameOfLife {
 
                 for (int j = 0; j < map[0].length; j++) {
 
-                    jPanels[j].setBorder(null);
+                    if(j != 0) {
+
+                        jPanels[j].setBorder(null);
+
+                    }
 
                 }
 
@@ -502,25 +511,6 @@ public class GameOfLife {
 
         submitSettings.addActionListener(e -> {
 
-            userColor = pickedColor[0];
-
-            paint();
-
-            settings.setVisible(false);
-
-            if(speedPanel[0].isSelected()){
-                speed = 1;
-            }
-            else if(speedPanel[1].isSelected()){
-                speed = 2;
-            }
-            else if(speedPanel[2].isSelected()){
-                speed = 3;
-            }
-            else if(speedPanel[3].isSelected()){
-                speed = 4;
-            }
-
             if(scalePanel[0].isSelected()) {
 
                 int result = JOptionPane.showOptionDialog(null,
@@ -529,6 +519,8 @@ public class GameOfLife {
                         null, new String[]{"Yes", "No"}, "Yes");
 
                 if (result == JOptionPane.YES_OPTION) {
+                    clear();
+                    map = null;
                     border.setBounds(0, 554, 700, 7);
                     window.revalidate();
                     gen = 0;
@@ -545,6 +537,8 @@ public class GameOfLife {
                         null, new String[]{"Yes", "No"}, "Yes");
 
                 if (result == JOptionPane.YES_OPTION) {
+                    clear();
+                    map = null;
                     border.setBounds(0, 554, 1400, 7);
                     window.revalidate();
                     gen = 0;
@@ -554,6 +548,27 @@ public class GameOfLife {
 
 
             }
+
+            userColor = pickedColor[0];
+
+            if(!scalePanel[0].isSelected() && !scalePanel[0].isSelected()) {
+                paint();
+            }
+
+            if(speedPanel[0].isSelected()){
+                speed = 1;
+            }
+            else if(speedPanel[1].isSelected()){
+                speed = 2;
+            }
+            else if(speedPanel[2].isSelected()){
+                speed = 3;
+            }
+            else if(speedPanel[3].isSelected()){
+                speed = 4;
+            }
+
+            settings.setVisible(false);
 
             });
 
@@ -775,4 +790,3 @@ public class GameOfLife {
         window.setVisible(true);
     }
 }
-
